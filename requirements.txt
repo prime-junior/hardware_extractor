@@ -1,0 +1,7 @@
+gspread
+openpyxl
+jupyter
+pykernel
+streamlit
+st-gsheets-connection
+pandas
