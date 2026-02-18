@@ -12,10 +12,11 @@
 After extracting data from PDF files and moving them to a Google Sheet as described in the repository (https://github.com/prime-junior/pdf_data_extract), this project provides a web interface for further processing and management of part numbers. Using Streamlit, it allows users to input a part number, automatically extract all its variations from the Google Sheet, and update the relevant cells accordingly. The tool streamlines the workflow of validating, extracting, and organizing hardware part numbers, ensuring that the Google Sheet remains up-to-date and consistent for further analysis or reporting.
 
 
+**Note:** For accessing Google Sheets, it is necessary to create a service account in Google Cloud Platform as described in the [gspread documentation](https://docs.gspread.org/en/latest/oauth2.html)
 
 
-## Author
-Developed by [Weverson Barbieri de Oliveira](https://github.com/weversonbarbieri)
+## Application Demo
+[VIEW DEMO](./media/demo.mp4)
 
 ## License
 MIT

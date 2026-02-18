@@ -9,11 +9,10 @@ try:
     worksheet = open_gsheet() 
 
     def create_df(worksheet):
-        """Returns a pandas format dataframe.
+        """Returns a pandas dataframe.
          
-        With the format from pandas library from the gspread.worksheet.Worksheet data type
-        obtained with the function open_gsheet(). Then, pandas DataFrame method converts
-        gspread.worksheet.Worksheet to readable data.
+        From the gspread.worksheet.Worksheet data type obtained with the function open_gsheet(). 
+        Then, pandas DataFrame method converts gspread.worksheet.Worksheet to readable data.
 
         Argument:
             worksheet (gspread.worksheet.Worksheet): When using the Google Cloud credentials to access a spresheet,
@@ -25,22 +24,24 @@ try:
         """
         return pd.DataFrame(worksheet.get_all_records())
     
+    # Call the function to convert to dataframe
     df = create_df(worksheet)
 
     def part_number_input():
-        """Returns a text area on the browser to input the part number to be extracted.
-        The inputted part number is stored under the variable part_number."""
+        """Returns a text area to input the part number to be extracted.
+        The inputted part number is assigned to the variable part_number."""
         part_number = st.text_input("Part Number: ") 
         return part_number
 
+    # Call the function to insert the input text area
     part_number = part_number_input()
 
     def button_to_input_part_number(part_number):
-        """Returns a button on the browser to run the application and update the browser.
-        Returns a regex pattern on the back-end.
+        """Returns a button below the text area. After pressing the button the part number is assigned 
+        to the variable part_number and then applies the regex pattern.
 
         As soon as the button is pressed, the part number inputted on the text area
-        is stored under the variable part_number. The part_number inputted becomes a regex pattern,
+        is assigned to the variable part_number. The part_number inputted becomes a regex pattern,
         so that the part number inputted along with its variations can be extracted from the column 'OLD PART NUMBER(S)'.
 
         Arguments: 
@@ -62,14 +63,18 @@ try:
 
         return pattern
 
+    # Call the function insert the button
     pattern = button_to_input_part_number(part_number)
 
-    # Condition when button is pressed
+    # Condition to confirm when the button is pressed
     if pattern:
+        # Extract the part number and update the hdw column
         extract_update_cell(df, pattern, worksheet)
 
+    # Call the function to get a worksheet after updating hdw column
     worksheet_updated = open_gsheet()
-
+    
+    # Call the function to convert the worksheet to dataframe after updating hdw column 
     df_updated = create_df(worksheet_updated)
 
 except Exception as e:
