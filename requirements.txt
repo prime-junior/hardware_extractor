@@ -5,3 +5,4 @@ pykernel
 streamlit
 st-gsheets-connection
 pandas
+PyInstaller
