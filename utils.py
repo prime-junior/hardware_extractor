@@ -1,12 +1,11 @@
 import gspread
 import streamlit as st
 import re
-from google.oauth2.service_account import Credentials
 
 
 def open_gsheet():
 
-    """Returns a gspread.worksheet.Worksheet data type where.
+    """Returns a gspread.worksheet.Worksheet data type.
 
     It can be used to convert from this data type to a dataframe. 
        

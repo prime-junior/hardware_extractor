@@ -6,12 +6,12 @@ from utils import open_gsheet, extract_update_cell
 
 try:
     # Call the function to get a worksheet.
-    worksheet = open_gsheet() 
+    worksheet = open_gsheet()
 
     def create_df(worksheet):
         """Returns a pandas dataframe.
          
-        From the gspread.worksheet.Worksheet data type obtained with the function open_gsheet(). 
+        From the gspread.worksheet.Worksheet data type obtained with the function open_gsheet().
         Then, pandas DataFrame method converts gspread.worksheet.Worksheet to readable data.
 
         Argument:
@@ -55,6 +55,9 @@ try:
 
             extracted part numbers: 1234AA, 1234AB, 1234AC    
         """
+        # Initialize pattern as None
+        pattern = None
+        
         if st.button("Part Number Input"):
             if len(part_number) < 8 :
                 st.write("Please, enter the correct part number.")
@@ -78,7 +81,8 @@ try:
     df_updated = create_df(worksheet_updated)
 
 except Exception as e:
-    print(f'Error: {e}')
-
-
-# streamlit run cli_auth.py
+    try:
+        import streamlit as st
+        st.error(f"Error: {e}")
+    except Exception:
+        print(f'Error: {e}')
